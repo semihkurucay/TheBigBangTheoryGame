@@ -19,7 +19,7 @@ public class main extends javax.swing.JFrame {
      * Creates new form main
      */
     public main() {
-        this.setIconImage(new ImageIcon(getClass().getResource("/resources/images/icon.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/theBigBangTheoryGame/resources/images/icon.png")).getImage());
         
         initComponents();
         btnSetImage();
@@ -29,11 +29,11 @@ public class main extends javax.swing.JFrame {
     char sheldonSelectItem;
     char[] cards = {'C', 'S', 'P', 'L', 'H'};
 
-    Image imgCut = new ImageIcon(getClass().getResource("/resources/Images/cut.png")).getImage();
-    Image imgStone = new ImageIcon(getClass().getResource("/resources/Images/stone.png")).getImage();
-    Image imgPaper = new ImageIcon(getClass().getResource("/resources/Images/paper.png")).getImage();
-    Image imgLizard = new ImageIcon(getClass().getResource("/resources/Images/lizard.png")).getImage();
-    Image imgHand = new ImageIcon(getClass().getResource("/resources/Images/hand.png")).getImage();
+    Image imgCut = new ImageIcon(getClass().getResource("/theBigBangTheoryGame/resources/Images/cut.png")).getImage();
+    Image imgStone = new ImageIcon(getClass().getResource("/theBigBangTheoryGame/resources/Images/stone.png")).getImage();
+    Image imgPaper = new ImageIcon(getClass().getResource("/theBigBangTheoryGame/resources/Images/paper.png")).getImage();
+    Image imgLizard = new ImageIcon(getClass().getResource("/theBigBangTheoryGame/resources/Images/lizard.png")).getImage();
+    Image imgHand = new ImageIcon(getClass().getResource("/theBigBangTheoryGame/resources/Images/hand.png")).getImage();
 
     private void btnSetImage() {
         btnCut.setIcon(new ImageIcon(imgCut.getScaledInstance(90, 90, Image.SCALE_SMOOTH)));
