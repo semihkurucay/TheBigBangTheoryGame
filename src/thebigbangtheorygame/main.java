@@ -19,105 +19,110 @@ public class main extends javax.swing.JFrame {
      * Creates new form main
      */
     public main() {
+        this.setIconImage(new ImageIcon(getClass().getResource("/resources/images/icon.png")).getImage());
+        
         initComponents();
         btnSetImage();
     }
-    
-    int sheldon = 0, you = 0;
-    char youSelectItem,sheldonSelectItem;
-    char[] cards = {'C','S','P','L','H'};
 
-    Image imgCut = new ImageIcon(getClass().getResource("/resources/Images/cut.png")).getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
-    Image imgStone = new ImageIcon(getClass().getResource("/resources/Images/stone.png")).getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
-    Image imgPaper = new ImageIcon(getClass().getResource("/resources/Images/paper.png")).getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
-    Image imgLizard = new ImageIcon(getClass().getResource("/resources/Images/lizard.png")).getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
-    Image imgHand = new ImageIcon(getClass().getResource("/resources/Images/hand.png")).getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+    int sheldon = 0, you = 0;
+    char sheldonSelectItem;
+    char[] cards = {'C', 'S', 'P', 'L', 'H'};
+
+    Image imgCut = new ImageIcon(getClass().getResource("/resources/Images/cut.png")).getImage();
+    Image imgStone = new ImageIcon(getClass().getResource("/resources/Images/stone.png")).getImage();
+    Image imgPaper = new ImageIcon(getClass().getResource("/resources/Images/paper.png")).getImage();
+    Image imgLizard = new ImageIcon(getClass().getResource("/resources/Images/lizard.png")).getImage();
+    Image imgHand = new ImageIcon(getClass().getResource("/resources/Images/hand.png")).getImage();
 
     private void btnSetImage() {
-        btnCut.setIcon(new ImageIcon(imgCut));
-        btnHand.setIcon(new ImageIcon(imgHand));
-        btnLizard.setIcon(new ImageIcon(imgLizard));
-        btnPaper.setIcon(new ImageIcon(imgPaper));
-        btnStone.setIcon(new ImageIcon(imgStone));
+        btnCut.setIcon(new ImageIcon(imgCut.getScaledInstance(90, 90, Image.SCALE_SMOOTH)));
+        btnHand.setIcon(new ImageIcon(imgHand.getScaledInstance(90, 90, Image.SCALE_SMOOTH)));
+        btnLizard.setIcon(new ImageIcon(imgLizard.getScaledInstance(90, 90, Image.SCALE_SMOOTH)));
+        btnPaper.setIcon(new ImageIcon(imgPaper.getScaledInstance(90, 90, Image.SCALE_SMOOTH)));
+        btnStone.setIcon(new ImageIcon(imgStone.getScaledInstance(90, 90, Image.SCALE_SMOOTH)));
     }
-    
-    private void game(char selectItem){
+
+    private void game(char selectItem) {
         Random rnd = new Random();
         sheldonSelectItem = cards[rnd.nextInt(cards.length)];
         sheldonOpenCardImage(sheldonSelectItem);
-        
-        if(isWin(selectItem) == 1){
+
+        if (isWin(selectItem) == 1) {
             lblYouScore.setText(++you + "");
             JOptionPane.showMessageDialog(this, "Tebrikler Dr. Sheldon'ı yendiniz", "Oyuncuya Duyrulur", JOptionPane.INFORMATION_MESSAGE);
-        }else if(isWin(selectItem) == 2){
+        } else if (isWin(selectItem) == 2) {
             JOptionPane.showMessageDialog(this, "Tebrikler Dr. Sheldon ile berabere kaldınız", "Oyuncuya Duyrulur", JOptionPane.INFORMATION_MESSAGE);
-        }else{
+        } else {
             lblSheldonScore.setText(++sheldon + "");
             JOptionPane.showMessageDialog(this, "Maalesef kaybettiniz, Dr. Sheldon kazandı her zamanki gibi", "Oyuncuya Duyrulur", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
-    private int isWin(char selectItem){
-        switch(selectItem){
+    private int isWin(char selectItem) {
+        switch (selectItem) {
             case 'C':
-                if(sheldonSelectItem == 'P' || sheldonSelectItem == 'L'){
+                if (sheldonSelectItem == 'P' || sheldonSelectItem == 'L') {
                     return 1;
-                }else if(sheldonSelectItem == selectItem){
+                } else if (sheldonSelectItem == selectItem) {
                     return 2;
                 }
                 return 0;
             case 'S':
-                if(sheldonSelectItem == 'L' || sheldonSelectItem == 'C'){
+                if (sheldonSelectItem == 'L' || sheldonSelectItem == 'C') {
                     return 1;
-                }else if(sheldonSelectItem == selectItem){
+                } else if (sheldonSelectItem == selectItem) {
                     return 2;
                 }
                 return 0;
             case 'P':
-                if(sheldonSelectItem == 'S' || sheldonSelectItem == 'H'){
+                if (sheldonSelectItem == 'S' || sheldonSelectItem == 'H') {
                     return 1;
-                }else if(sheldonSelectItem == selectItem){
+                } else if (sheldonSelectItem == selectItem) {
                     return 2;
                 }
                 return 0;
             case 'L':
-                if(sheldonSelectItem == 'H' || sheldonSelectItem == 'P'){
+                if (sheldonSelectItem == 'H' || sheldonSelectItem == 'P') {
                     return 1;
-                }else if(sheldonSelectItem == selectItem){
+                } else if (sheldonSelectItem == selectItem) {
                     return 2;
                 }
                 return 0;
             case 'H':
-                if(sheldonSelectItem == 'C' || sheldonSelectItem == 'S'){
+                if (sheldonSelectItem == 'C' || sheldonSelectItem == 'S') {
                     return 1;
-                }else if(sheldonSelectItem == selectItem){
+                } else if (sheldonSelectItem == selectItem) {
                     return 2;
                 }
                 return 0;
+            default:
+                return 0;
         }
-        return 0;
     }
-    
-    private void sheldonOpenCardImage(char card){
-        switch(card){
+
+    private void sheldonOpenCardImage(char card) {
+        switch (card) {
             case 'C':
-                lblSheldonImage.setIcon(new ImageIcon(imgCut.getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
+                lblSheldonImage.setIcon(new ImageIcon(imgCut.getScaledInstance(lblSheldonImage.getWidth(), lblSheldonImage.getHeight(), Image.SCALE_SMOOTH)));
                 break;
             case 'S':
-                lblSheldonImage.setIcon(new ImageIcon(imgStone.getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
+                lblSheldonImage.setIcon(new ImageIcon(imgStone.getScaledInstance(lblSheldonImage.getWidth(), lblSheldonImage.getHeight(), Image.SCALE_SMOOTH)));
                 break;
             case 'P':
-                lblSheldonImage.setIcon(new ImageIcon(imgPaper.getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
+                lblSheldonImage.setIcon(new ImageIcon(imgPaper.getScaledInstance(lblSheldonImage.getWidth(), lblSheldonImage.getHeight(), Image.SCALE_SMOOTH)));
                 break;
             case 'L':
-                lblSheldonImage.setIcon(new ImageIcon(imgLizard.getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
+                lblSheldonImage.setIcon(new ImageIcon(imgLizard.getScaledInstance(lblSheldonImage.getWidth(), lblSheldonImage.getHeight(), Image.SCALE_SMOOTH)));
                 break;
             case 'H':
-                lblSheldonImage.setIcon(new ImageIcon(imgHand.getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
+                lblSheldonImage.setIcon(new ImageIcon(imgHand.getScaledInstance(lblSheldonImage.getWidth(), lblSheldonImage.getHeight(), Image.SCALE_SMOOTH)));
+                break;
+            default:
                 break;
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,6 +145,7 @@ public class main extends javax.swing.JFrame {
         lblYouScore = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("The Big BangTheory Game");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(203, 210, 164));
@@ -277,7 +283,7 @@ public class main extends javax.swing.JFrame {
 
     private void btnStoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStoneActionPerformed
         // TODO add your handling code here:
-       game('S');
+        game('S');
     }//GEN-LAST:event_btnStoneActionPerformed
 
     private void btnPaperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaperActionPerformed
